@@ -1,196 +1,242 @@
-# AURA - AI Personal Assistant v4.0
+ --- 
+
+# 🌟 AURA – AI Personal Assistant v4.0
 
 <div align="center">
 
 ![AURA Banner](https://img.shields.io/badge/AURA-AI%20Assistant-v4.0-blue)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-**Your Intelligent Personal Assistant with Voice Recognition & Task Management**
+### **Your Intelligent Personal Assistant with Voice Recognition, NLP & Smart Productivity Tools**
 
-[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Demo](#demo) • [Contributing](#contributing)
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Demo](#-demo) • [Project-Structure](#-project-structure) • [Configuration](#-configuration) • [Contributing](#-contributing)
 
 </div>
 
+---
+
 ## 🎯 Overview
 
-AURA is an advanced AI-powered personal assistant that combines voice recognition, natural language processing, and smart task management to help you stay productive and organized.
+**AURA** is an advanced personal AI assistant built using **Python, NLP, Voice Recognition, Smart Task Automation, and AI-powered conversations**.
+
+AURA can:
+
+* Understand your voice
+* Chat naturally
+* Track habits
+* Manage tasks
+* Set reminders
+* Provide AI-generated responses
+* Run in **CLI, Voice, GUI, and Web Dashboard modes**
+
+AURA is designed as your **daily productivity companion**.
+
+---
 
 ## 🎥 Demo
 
-**Live Demo Videos:** [Google Drive Folder](https://drive.google.com/drive/folders/1VP2GUPjplmEQuI9t3as44lv3QnY85Glk?usp=sharing)
+📌 **Live Demo Videos:**
+🔗 [https://drive.google.com/drive/folders/1VP2GUPjplmEQuI9t3as44lv3QnY85Glk?usp=sharing](https://drive.google.com/drive/folders/1VP2GUPjplmEQuI9t3as44lv3QnY85Glk?usp=sharing)
 
-> **Note:** Voice features are fully functional. Demo videos use text input due to temporary throat infection during recording.
+> ⭐ *Voice output works fully. Demo recorded in text mode due to throat infection.*
+
+---
 
 ## ✨ Features
 
 ### 🎤 Voice Intelligence
-- **Advanced Voice Recognition** - Improved wake word detection ("Hey Aura")
-- **Multi-mode Voice Assistant** - Always listening or push-to-talk
-- **Speech-to-Text & Text-to-Speech** - Natural conversations
-- **Fuzzy Matching** - Handles accent variations and similar-sounding phrases
 
-### 🤖 AI Capabilities
-- **Smart NLP Processing** - Understands context and intent
-- **Task Automation** - Automatic task categorization
-- **Habit Tracking** - Daily habit monitoring and analytics
-- **Smart Suggestions** - Personalized productivity insights
+* Wake word: **“Hey Aura”**
+* Natural speech-to-text
+* Smooth text-to-speech
+* Handles multiple accents
+* Supports always-listening & push-to-talk
 
-### 📊 Productivity Tools
-- **Task Management** - Add, complete, and track tasks
-- **Habit Tracker** - Build and maintain daily habits
-- **Reminder System** - Never miss important deadlines
-- **Productivity Analytics** - Detailed reports and insights
+---
 
-### 🎨 Multiple Interfaces
-- **Text Mode** - Traditional command-line interface
-- **Voice Mode** - Hands-free voice control
-- **GUI Mode** - Graphical user interface
-- **Web Dashboard** - Browser-based access
+### 🤖 AI & Smart Automation
+
+* NLP language understanding
+* ChatGPT/OpenAI integration
+* Contextual conversations
+* Smart task categorization
+* Habit-based auto-reminders
+* Productivity insights
+
+---
+
+### 📊 Productivity Suite
+
+* To-do manager
+* Reminder scheduler
+* Habit tracker
+* Analytics dashboard
+* Smart suggestions
+
+---
+
+### 🖥 Interface Modes
+
+* **CLI Mode**
+* **Voice Mode (press-to-talk)**
+* **Always Listening Mode**
+* **GUI Mode**
+* **Web Dashboard**
+
+---
 
 ## 🛠 Installation
 
-### Prerequisites
-- Python 3.8 or higher
-- Microphone (for voice features)
+### **Prerequisites**
 
-### Quick Setup
+* Python **3.8+**
+* Microphone (optional, for voice)
 
-1. **Clone the repository**
-2. 
+---
+
+### **Quick Setup**
+
+```bash
+# Clone the repository
 git clone https://github.com/Anwesha-mishra-9090/Aura_4.0.git
 cd Aura_4.0
-Install dependencies
 
+# Install dependencies
 pip install -r requirements.txt
-Run AURA
 
+# Run AURA
 python main.py
-🎮 Usage
-Starting AURA
+```
 
+---
+
+## 🎮 Usage
+
+### **Start AURA**
+
+```bash
 python main.py
-Available Modes
-Text Mode - Type commands directly
+```
 
-Voice Mode - Push-to-talk voice commands
+### **Modes Available**
 
-Voice Assistant - Always listening for "Hey Aura"
+| Mode                 | Description                |
+| -------------------- | -------------------------- |
+| **Text Mode**        | Type commands in terminal  |
+| **Voice Mode**       | Push-to-talk voice input   |
+| **Always Listening** | Say “Hey Aura” to activate |
+| **GUI Mode**         | On-screen visual interface |
+| **Web Dashboard**    | Browser-based control      |
 
-GUI Mode - Graphical interface
+---
 
-Web Dashboard - Browser interface
+### 💬 Example Commands
 
-Basic Commands
+#### 🤖 AI Queries
 
-# AI Features
-"chat what's the weather today?"
-"ai write a poem about coding"
+```bash
+ai write a poem about coding
+chat what's the weather today?
+```
 
-# Task Management  
-"add task finish project by friday high priority"
-"show tasks"
-"complete task 1"
+#### 📌 Task Management
 
-# Habit Tracking
-"add habit exercise daily"
-"mark habit exercise done"
-🏗 Project Structure
+```bash
+add task finish project by friday high priority
+show tasks
+complete task 1
+```
 
+#### 🔁 Habit Tracking
+
+```bash
+add habit exercise daily
+mark habit exercise done
+```
+
+---
+
+## 🗂 Project Structure
+
+```bash
 Aura_4.0/
-├── main.py                 # Main application entry point
-├── brain/                  # AI and NLP processing
-│   ├── nlp_processor.py    # Natural language processing
-│   ├── habit_tracker.py    # Habit management
-│   └── smart_suggestions.py # AI suggestions
-├── voice/                  # Voice capabilities
-│   ├── speech_to_text.py   # Voice recognition
-│   ├── text_to_speech.py   # Speech synthesis
-│   └── wake_word.py        # Wake word detection
-├── memory/                 # Data management
-│   ├── database.py         # Database operations
-│   ├── memory_manager.py   # Conversation memory
-│   └── reminder_manager.py # Reminder system
-├── integrations/           # External services
-│   └── openai_client.py    # AI integration
-└── utils/                  # Utilities
-    ├── config_manager.py   # Configuration
-    └── data_export.py      # Data export
-🔧 Configuration
-Edit config/settings.json to customize AURA:
+├── main.py
+├── brain/
+│   ├── nlp_processor.py
+│   ├── habit_tracker.py
+│   └── smart_suggestions.py
+├── voice/
+│   ├── speech_to_text.py
+│   ├── text_to_speech.py
+│   └── wake_word.py
+├── memory/
+│   ├── database.py
+│   ├── memory_manager.py
+│   └── reminder_manager.py
+├── integrations/
+│   └── openai_client.py
+└── utils/
+    ├── config_manager.py
+    └── data_export.py
+```
 
+---
+
+## 🔧 Configuration
+
+Edit:
+
+```
+config/settings.json
+```
+
+Example:
+
+```json
 {
     "ai_provider": "openai",
     "voice_enabled": true,
     "wake_word": "hey aura",
     "auto_start": false
 }
-🤝 Contributing
-We love contributions! Please see our Contributing Guide for details.
+```
 
-Development Setup
-Fork the repository
+---
 
-Create a feature branch: git checkout -b feature/amazing-feature
+## 🤝 Contributing
 
-Commit changes: git commit -m 'Add amazing feature'
+```bash
+# Create a new branch
+git checkout -b feature/amazing-feature
 
-Push to branch: git push origin feature/amazing-feature
+# Commit changes
+git commit -m "feat: Add amazing feature"
 
-Open a Pull Request
+# Push changes
+git push origin feature/amazing-feature
+```
 
-📝 License
-This project is licensed under the MIT License - see LICENSE file for details.
+Then submit a **Pull Request**.
 
-🙏 Acknowledgments
-SpeechRecognition library for voice capabilities
+---
 
-OpenAI for AI integration
+## 📝 License
 
-SQLite for lightweight database management
+AURA is released under the **MIT License**.
+See the `LICENSE` file for details.
+
+---
 
 <div align="center">
-⭐ Don't forget to star this repo if you find it helpful!
 
-Report Bug •
-Request Feature •
-Follow Updates
+⭐ **If you like AURA, give the repo a star!** ⭐
+🐛 Bug Reports • 💡 Feature Requests • 📢 Follow Updates
 
-</div> ```
-🔧 STEP-BY-STEP FIXES:
-1. Create requirements.txt (New file in root folder)
-speechrecognition==3.10.0
-pyttsx3==2.90
-pyaudio==0.2.11
-requests==2.31.0
-flask==2.3.3
-python-dotenv==1.0.0
-openai==0.28.0
-numpy==1.24.3
-2. Create LICENSE (New file in root folder)
+</div>
 
-MIT License
+---
 
-Copyright (c) 2025 Anwesha Mishra
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-3. Update GitHub (Run these commands)
-git add README.md requirements.txt LICENSE
-git commit -m "docs: Update professional README and add requirements"
-git push origin main
