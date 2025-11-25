@@ -1,11 +1,5 @@
 # AURA - AI Personal Assistant v4.0
 
-Demo for the project is here - [ https://drive.google.com/drive/folders/1VP2GUPjplmEQuI9t3as44lv3QnY85Glk?usp=sharing ] 
-I have uploaded my all demos in the drive you can check there .    
-
-Voice feature normally works, but in this demo I used text input due to a temporary throat infection. There is demo for voice but that is not clear but if you do this it can work fine for you . Thank you . 
-
-
 <div align="center">
 
 ![AURA Banner](https://img.shields.io/badge/AURA-AI%20Assistant-v4.0-blue)
@@ -22,12 +16,19 @@ Voice feature normally works, but in this demo I used text input due to a tempor
 
 AURA is an advanced AI-powered personal assistant that combines voice recognition, natural language processing, and smart task management to help you stay productive and organized.
 
+## 🎥 Demo
+
+**Live Demo Videos:** [Google Drive Folder](https://drive.google.com/drive/folders/1VP2GUPjplmEQuI9t3as44lv3QnY85Glk?usp=sharing)
+
+> **Note:** Voice features are fully functional. Demo videos use text input due to temporary throat infection during recording.
+
 ## ✨ Features
 
 ### 🎤 Voice Intelligence
 - **Advanced Voice Recognition** - Improved wake word detection ("Hey Aura")
 - **Multi-mode Voice Assistant** - Always listening or push-to-talk
 - **Speech-to-Text & Text-to-Speech** - Natural conversations
+- **Fuzzy Matching** - Handles accent variations and similar-sounding phrases
 
 ### 🤖 AI Capabilities
 - **Smart NLP Processing** - Understands context and intent
@@ -56,23 +57,18 @@ AURA is an advanced AI-powered personal assistant that combines voice recognitio
 ### Quick Setup
 
 1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/aura-ai-assistant.git
-cd aura-ai-assistant
+2. 
+git clone https://github.com/Anwesha-mishra-9090/Aura_4.0.git
+cd Aura_4.0
 Install dependencies
 
-bash
 pip install -r requirements.txt
 Run AURA
 
-bash
 python main.py
-Detailed Setup
-For detailed installation instructions, see INSTALLATION.md
-
 🎮 Usage
 Starting AURA
-bash
+
 python main.py
 Available Modes
 Text Mode - Type commands directly
@@ -86,7 +82,7 @@ GUI Mode - Graphical interface
 Web Dashboard - Browser interface
 
 Basic Commands
-bash
+
 # AI Features
 "chat what's the weather today?"
 "ai write a poem about coding"
@@ -99,13 +95,9 @@ bash
 # Habit Tracking
 "add habit exercise daily"
 "mark habit exercise done"
-
-
-Manage tasks and habits with natural language
-
 🏗 Project Structure
-text
-aura-ai-assistant/
+
+Aura_4.0/
 ├── main.py                 # Main application entry point
 ├── brain/                  # AI and NLP processing
 │   ├── nlp_processor.py    # Natural language processing
@@ -127,7 +119,6 @@ aura-ai-assistant/
 🔧 Configuration
 Edit config/settings.json to customize AURA:
 
-json
 {
     "ai_provider": "openai",
     "voice_enabled": true,
@@ -166,25 +157,21 @@ Request Feature •
 Follow Updates
 
 </div> ```
-2. Create Additional Documentation Files
-requirements.txt
-
-txt
+🔧 STEP-BY-STEP FIXES:
+1. Create requirements.txt (New file in root folder)
 speechrecognition==3.10.0
 pyttsx3==2.90
 pyaudio==0.2.11
-sqlite3
 requests==2.31.0
 flask==2.3.3
 python-dotenv==1.0.0
 openai==0.28.0
 numpy==1.24.3
-LICENSE
+2. Create LICENSE (New file in root folder)
 
-txt
 MIT License
 
-Copyright (c) 2024 Your Name
+Copyright (c) 2025 Anwesha Mishra
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -203,25 +190,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-3. GitHub Upload Steps
-bash
-# Initialize git repository
-git init
-
-# Add all files
-git add .
-
-# Initial commit
-git commit -m "feat: Initial release of AURA AI Assistant v4.0
-
-- Advanced voice recognition with improved wake word detection
-- Multi-mode interface (text, voice, GUI, web)
-- AI-powered task management and habit tracking
-- Smart NLP processing and productivity analytics
-- Database management and reminder system"
-
-# Create GitHub repository first, then:
-git remote add origin https://github.com/yourusername/aura-ai-assistant.git
-git branch -M main
-git push -u origin main
+3. Update GitHub (Run these commands)
+git add README.md requirements.txt LICENSE
+git commit -m "docs: Update professional README and add requirements"
+git push origin main
