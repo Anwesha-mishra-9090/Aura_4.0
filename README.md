@@ -1,5 +1,10 @@
 # AURA - AI Personal Assistant v4.0
 
+Demo for the project is here - [ https://drive.google.com/drive/folders/1VP2GUPjplmEQuI9t3as44lv3QnY85Glk?usp=sharing ] 
+I have uploaded my all demos in the drive you can check there 
+Voice feature normally works, but in this demo I used text input due to a temporary throat infection. There is demo for voice but that is not clear but if you do this it can work fine for you . Thank you . 
+
+
 <div align="center">
 
 ![AURA Banner](https://img.shields.io/badge/AURA-AI%20Assistant-v4.0-blue)
