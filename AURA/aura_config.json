@@ -1,0 +1,14 @@
+{
+  "openai_api_key": "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",
+  "user_name": "User",
+  "voice_enabled": true,
+  "ai_enabled": false,
+  "auto_backup": true,
+  "theme": "dark",
+  "language": "english",
+  "productivity_goals": {
+    "daily_tasks": 5,
+    "weekly_habits": 3,
+    "focus_sessions": 4
+  }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🤖 AURA Dashboard</h1>
+            <p>Your AI Personal Assistant - v4.0</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>📊 Productivity Score</h3>
+                <div class="score" id="productivityScore">--</div>
+                <div id="scoreTrend"></div>
+            </div>
+
+            <div class="card">
+                <h3>📈 Task Analytics</h3>
+                <canvas id="taskChart" width="200" height="200"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>💪 Habit Streaks</h3>
+                <div id="habitStreaks">Loading...</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="card">
+                <h3>🚀 Quick Actions</h3>
+                <div class="action-buttons">
+                    <button onclick="addQuickTask()">➕ Add Task</button>
+                    <button onclick="markHabitDone()">✅ Complete Habit</button>
+                    <button onclick="exportData()">📤 Export Data</button>
+                    <button onclick="showAnalytics()">📊 Full Report</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>💬 Chat with AURA</h3>
+                <div class="chat-container">
+                    <div class="chat-history" id="chatHistory">
+                        <div class="message aura-message">
+                            <strong>AURA:</strong> Hello! I'm ready to help you be more productive. What would you like to do?
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="messageInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📝 Recent Tasks</h3>
+                <div id="recentTasks">
+                    <div class="loading">Loading tasks...</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔥 Active Habits</h3>
+                <div id="activeHabits">
+                    <div class="loading">Loading habits...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let analyticsData = {};
+        let tasks = [];
+        let habits = [];
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            setInterval(loadDashboardData, 30000); // Refresh every 30 seconds
+        });
+
+        // Load all dashboard data
+        async function loadDashboardData() {
+            try {
+                await Promise.all([
+                    loadAnalytics(),
+                    loadTasks(),
+                    loadHabits()
+                ]);
+                updateDashboard();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        // Load analytics data
+        async function loadAnalytics() {
+            const response = await fetch('/api/analytics');
+            analyticsData = await response.json();
+        }
+
+        // Load tasks
+        async function loadTasks() {
+            const response = await fetch('/api/tasks');
+            const data = await response.json();
+            tasks = data.tasks || [];
+        }
+
+        // Load habits
+        async function loadHabits() {
+            const response = await fetch('/api/habits');
+            const data = await response.json();
+            habits = data.habits || [];
+        }
+
+        // Update dashboard with loaded data
+        function updateDashboard() {
+            updateProductivityScore();
+            updateTaskChart();
+            updateHabitStreaks();
+            updateRecentTasks();
+            updateActiveHabits();
+        }
+
+        // Update productivity score
+        function updateProductivityScore() {
+            const score = analyticsData.productivity_score || 0;
+            const scoreElement = document.getElementById('productivityScore');
+            scoreElement.textContent = `${score}/100`;
+
+            // Color coding based on score
+            if (score >= 80) {
+                scoreElement.style.color = '#2ecc71';
+            } else if (score >= 60) {
+                scoreElement.style.color = '#f39c12';
+            } else {
+                scoreElement.style.color = '#e74c3c';
+            }
+        }
+
+        // Update task chart
+        function updateTaskChart() {
+            const ctx = document.getElementById('taskChart').getContext('2d');
+            const analytics = analyticsData.analytics;
+
+            if (!analytics) return;
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'Pending', 'Overdue'],
+                    datasets: [{
+                        data: [
+                            analytics.tasks.completed,
+                            analytics.tasks.pending,
+                            analytics.tasks.overdue
+                        ],
+                        backgroundColor: ['#2ecc71', '#3498db', '#e74c3c']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update habit streaks
+        function updateHabitStreaks() {
+            const streaksElement = document.getElementById('habitStreaks');
+            const analytics = analyticsData.analytics;
+
+            if (!analytics) return;
+
+            streaksElement.innerHTML = `
+                <p>Average Streak: ${analytics.habits.average_streak} days</p>
+                <p>Best Streak: ${analytics.habits.best_streak} days</p>
+                <p>Total Habits: ${analytics.habits.total}</p>
+            `;
+        }
+
+        // Update recent tasks
+        function updateRecentTasks() {
+            const tasksElement = document.getElementById('recentTasks');
+            const recentTasks = tasks.slice(0, 5);
+
+            if (recentTasks.length === 0) {
+                tasksElement.innerHTML = '<p>No tasks yet. Add your first task!</p>';
+                return;
+            }
+
+            tasksElement.innerHTML = recentTasks.map(task => `
+                <div class="task-item ${task.status}">
+                    <span class="task-text">${task.text}</span>
+                    ${task.due_date ? `<span class="due-date">Due: ${new Date(task.due_date).toLocaleDateString()}</span>` : ''}
+                    <span class="priority priority-${task.priority}">${['Low', 'Medium', 'High'][task.priority - 1]}</span>
+                </div>
+            `).join('');
+        }
+
+        // Update active habits
+        function updateActiveHabits() {
+            const habitsElement = document.getElementById('activeHabits');
+            const activeHabits = habits.slice(0, 5);
+
+            if (activeHabits.length === 0) {
+                habitsElement.innerHTML = '<p>No habits yet. Start tracking your habits!</p>';
+                return;
+            }
+
+            habitsElement.innerHTML = activeHabits.map(habit => `
+                <div class="habit-item">
+                    <span class="habit-name">${habit.name}</span>
+                    <span class="habit-streak">${habit.streak} days</span>
+                    <span class="habit-frequency">${habit.frequency}</span>
+                </div>
+            `).join('');
+        }
+
+        // Chat functionality
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            addMessage('You', message, 'user-message');
+            input.value = '';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                addMessage('AURA', data.response, 'aura-message');
+            } catch (error) {
+                addMessage('AURA', 'Sorry, I encountered an error. Please try again.', 'aura-message error');
+            }
+        }
+
+        function addMessage(sender, message, cssClass) {
+            const chatHistory = document.getElementById('chatHistory');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${cssClass}`;
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Quick actions
+        function addQuickTask() {
+            const task = prompt('Enter a new task:');
+            if (task) {
+                fetch('/api/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: task })
+                }).then(() => {
+                    loadDashboardData();
+                    addMessage('System', `Task added: ${task}`, 'system-message');
+                });
+            }
+        }
+
+        function markHabitDone() {
+            addMessage('AURA', 'Use "mark habit [name] done" in chat to complete a habit.', 'aura-message');
+        }
+
+        function exportData() {
+            window.open('/api/export/json', '_blank');
+        }
+
+        function showAnalytics() {
+            addMessage('You', 'show analytics', 'user-message');
+            setTimeout(() => {
+                addMessage('AURA', `Productivity Score: ${analyticsData.productivity_score}/100\nTask Completion: ${analyticsData.analytics.tasks.completion_rate}%`, 'aura-message');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
